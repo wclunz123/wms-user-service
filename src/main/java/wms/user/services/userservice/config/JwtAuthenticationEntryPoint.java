@@ -1,4 +1,4 @@
-package wms.user.services.userservice.utils.jwt;
+package wms.user.services.userservice.config;
 
 import java.io.IOException;
 import java.io.Serializable;

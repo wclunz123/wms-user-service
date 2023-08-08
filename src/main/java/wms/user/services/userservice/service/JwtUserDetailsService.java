@@ -1,16 +1,16 @@
-package wms.user.services.userservice.service.impl;
+package wms.user.services.userservice.service;
 
 import java.util.ArrayList;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import wms.user.services.userservice.exceptions.UserNotFoundException;
-import wms.user.services.userservice.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class JwtUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
