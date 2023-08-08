@@ -14,9 +14,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "USERS")
-public class User {
+public class CustomUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,14 +26,13 @@ public class User {
 	@Column(nullable = false)
 	protected String username;
 
-	@Column(nullable = false, unique = true, columnDefinition = "VARCHAR(255) CHECK (email ~* '^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$')")
+//	@Column(nullable = false, unique = true, columnDefinition = "VARCHAR(255) CHECK (email ~* '^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$')")
+	@Column(nullable = false, unique = true)
 	@Email(message = "Invalid email format.")
 	protected String email;
 
 	@JsonIgnore
 	@Column(nullable = false)
-	@Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters")
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character")
 	protected String password;
 
 	@Enumerated(EnumType.STRING)

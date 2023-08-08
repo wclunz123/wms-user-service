@@ -46,8 +46,6 @@ public class JwtFilter extends OncePerRequestFilter {
 			} catch (ExpiredJwtException ex) {
 				System.out.println("JWT Token has expired");
 			}
-		} else {
-			throw new InvalidCredentialsException("Invalid jwt token in Authorization header.");
 		}
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

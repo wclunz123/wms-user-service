@@ -42,6 +42,7 @@ public class JwtTokenManager implements Serializable {
 	}
 
 	public String getUsernameFromToken(String token) {
+		System.out.println(token);
 		final Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
 		return claims.getSubject();
 	}
