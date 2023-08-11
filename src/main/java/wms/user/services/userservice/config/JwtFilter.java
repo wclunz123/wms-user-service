@@ -17,7 +17,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import wms.user.services.userservice.exceptions.InvalidCredentialsException;
-import wms.user.services.userservice.service.JwtUserDetailsService;
+import wms.user.services.userservice.service.impl.JwtUserDetailsService;
+import wms.user.services.userservice.utils.JwtTokenManager;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {

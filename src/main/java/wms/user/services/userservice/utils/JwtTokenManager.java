@@ -1,4 +1,4 @@
-package wms.user.services.userservice.config;
+package wms.user.services.userservice.utils;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -42,7 +42,6 @@ public class JwtTokenManager implements Serializable {
 	}
 
 	public String getUsernameFromToken(String token) {
-		System.out.println(token);
 		final Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
 		return claims.getSubject();
 	}

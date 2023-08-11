@@ -1,15 +1,14 @@
 package wms.user.services.userservice.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import wms.user.services.userservice.utils.UserRole;
+import lombok.*;
+import wms.user.services.userservice.entity.Role;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterRequest implements Serializable {
@@ -21,5 +20,5 @@ public class RegisterRequest implements Serializable {
 	private String username;
 	private String email;
 	private String password;
-	private UserRole role;
+	private Set<Role> roles;
 }

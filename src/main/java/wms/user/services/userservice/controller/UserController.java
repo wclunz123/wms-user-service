@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import wms.user.services.userservice.config.JwtTokenManager;
 import wms.user.services.userservice.entity.CustomUser;
 import wms.user.services.userservice.exceptions.InvalidCredentialsException;
 import wms.user.services.userservice.model.LoginRequest;
 import wms.user.services.userservice.model.LoginResponse;
 import wms.user.services.userservice.model.RegisterRequest;
-import wms.user.services.userservice.service.JwtUserDetailsService;
 import wms.user.services.userservice.service.UserService;
+import wms.user.services.userservice.service.impl.JwtUserDetailsService;
+import wms.user.services.userservice.utils.JwtTokenManager;
 
 @RestController
 @CrossOrigin
@@ -28,7 +28,7 @@ public class UserController {
 
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
-	
+
 	@Autowired
 	private UserService userService;
 

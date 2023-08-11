@@ -1,6 +1,5 @@
-package wms.user.services.userservice.service;
+package wms.user.services.userservice.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +27,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
 		CustomUser retrievedUser = userRepository.findByEmail(username);
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + retrievedUser.getRole()));
+		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + retrievedUser.getRoles()));
 		return new User(retrievedUser.getEmail(), retrievedUser.getPassword(), grantedAuthorities);
 	}
 }

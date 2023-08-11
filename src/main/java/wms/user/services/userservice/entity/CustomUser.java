@@ -1,12 +1,11 @@
 package wms.user.services.userservice.entity;
 
-import wms.user.services.userservice.utils.UserRole;
-
 import lombok.*;
+
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "USERS")
+@Table(name = "USERS", uniqueConstraints = { @UniqueConstraint(name = "unique_email", columnNames = "email") })
 public class CustomUser {
 
 	@Id
@@ -35,7 +34,8 @@ public class CustomUser {
 	@Column(nullable = false)
 	protected String password;
 
-	@Enumerated(EnumType.STRING)
-	protected UserRole role;
+	@ManyToMany
+	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	protected Set<Role> roles;
 
 }
