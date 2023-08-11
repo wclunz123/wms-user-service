@@ -30,10 +30,12 @@ import wms.user.services.userservice.service.impl.JwtUserDetailsService;
 import wms.user.services.userservice.utils.ApiUtils;
 import wms.user.services.userservice.utils.JwtTokenManager;
 
-@RestController
 @CrossOrigin
+@RestController
+@RequestMapping(UserController.BASE_URL)
 public class UserController {
-
+	public final static String BASE_URL = "/api/user";
+	
 	@Autowired
 	private UserService userService;
 
