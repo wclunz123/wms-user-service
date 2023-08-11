@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum RoleEnum {
 
-	SUPER_ADMIN, ADMIN, MANAGER, FINANCE, HUMAN_RESOURCE, OPERATION, VIEWER;
+	SUPER_ADMIN, ADMIN, MANAGER, FINANCE, HUMAN_RESOURCE, MECHANIC, OPERATION, VIEWER;
 
 	@JsonCreator
 	public static RoleEnum fromString(String value) {

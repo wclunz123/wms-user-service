@@ -7,7 +7,5 @@ import wms.user.services.userservice.entity.CustomUser;
 
 @Repository
 public interface UserRepository extends JpaRepository<CustomUser, Long> {
-
 	CustomUser findByEmail(String email); 
-	
 }
