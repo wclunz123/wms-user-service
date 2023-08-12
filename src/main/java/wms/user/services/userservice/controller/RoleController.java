@@ -25,7 +25,7 @@ import wms.user.services.userservice.utils.RoleEnum;
 @RestController
 @RequestMapping(RoleController.BASE_URL)
 public class RoleController {
-	public final static String BASE_URL = "/api/role";
+	public static final String BASE_URL = "/api/role";
 
 	@Autowired
 	private RoleService roleService;
@@ -55,8 +55,8 @@ public class RoleController {
 	}
 	
 	@DeleteMapping("/delete/{roleId}")
-	public ResponseEntity<ApiResponse<Role>> delete(@PathVariable Long roleId) {
+	public ResponseEntity<ApiResponse<Long>> delete(@PathVariable Long roleId) {
 		roleService.delete(roleId);
-		return ApiUtils.success(null, "Deleted", HttpStatus.OK);
+		return ApiUtils.success(roleId, "Deleted", HttpStatus.OK);
 	}
 }

@@ -11,9 +11,11 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,9 +34,9 @@ import wms.user.services.userservice.utils.JwtTokenManager;
 
 @CrossOrigin
 @RestController
-@RequestMapping(UserController.BASE_URL)
+//@RequestMapping(UserController.BASE_URL)
 public class UserController {
-	public final static String BASE_URL = "/api/user";
+//	public static final String BASE_URL = "/api/user";
 	
 	@Autowired
 	private UserService userService;
@@ -73,16 +75,25 @@ public class UserController {
 
 	@GetMapping("/get")
 	public ResponseEntity<ApiResponse<List<CustomUser>>> findAll() {
-		final List<CustomUser> listOfUsers = userService.findAll();
-		return ApiUtils.success(listOfUsers, "Success", HttpStatus.OK);
+		final List<CustomUser> result = userService.findAll();
+		return ApiUtils.success(result, "Success", HttpStatus.OK);
 	}
 
 	@GetMapping("/get/{userId}")
 	public ResponseEntity<ApiResponse<CustomUser>> findById(@PathVariable Long userId) {
-		final CustomUser user = userService.findById(userId)
-				.orElseThrow(() -> new UserNotFoundException("User with ID " + userId + " not found."));
-
-		return ApiUtils.success(user, "Success", HttpStatus.OK);
+		final CustomUser result = userService.findById(userId);
+		return ApiUtils.success(result, "Success", HttpStatus.OK);
 	}
 
+	@PutMapping("/update")
+	public ResponseEntity<ApiResponse<CustomUser>> update(@RequestBody RegisterRequest registerRequest) {
+		CustomUser result = userService.update(registerRequest);
+		return ApiUtils.success(result, "Success", HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<ApiResponse<Long>> delete(@PathVariable Long id) {
+		userService.delete(id);
+		return ApiUtils.success(id, "Success", HttpStatus.OK);
+	}
 }

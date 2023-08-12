@@ -7,9 +7,13 @@ import wms.user.services.userservice.entity.CustomUser;
 import wms.user.services.userservice.model.RegisterRequest;
 
 public interface UserService {
-	public CustomUser register(RegisterRequest request);
+	public CustomUser register(final RegisterRequest request);
 	
-	public Optional<CustomUser> findById(final Long userId);
+	public CustomUser findById(final Long userId);
 	
 	public List<CustomUser> findAll();
+	
+	public CustomUser update(final RegisterRequest request);
+	
+	public void delete(final Long userId);
 }
