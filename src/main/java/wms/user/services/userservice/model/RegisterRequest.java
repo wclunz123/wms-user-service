@@ -23,7 +23,8 @@ public class RegisterRequest implements Serializable {
 	private String email;
 	private String password;
 	private Set<RoleEnum> roles;
-
+	
+    // Getters and Setters
 	public Set<Role> getRoles() {
 		return roles.stream().map(Role::new).collect(Collectors.toSet());
 	}

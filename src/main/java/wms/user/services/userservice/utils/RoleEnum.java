@@ -1,8 +1,10 @@
 package wms.user.services.userservice.utils;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-public enum RoleEnum {
+public enum RoleEnum implements Serializable {
 
 	SUPER_ADMIN, ADMIN, MANAGER, FINANCE, HUMAN_RESOURCE, MECHANIC, OPERATION, VIEWER;
 

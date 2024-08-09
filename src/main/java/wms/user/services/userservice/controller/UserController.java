@@ -36,7 +36,7 @@ import wms.user.services.userservice.utils.JwtTokenManager;
 @RestController
 //@RequestMapping(UserController.BASE_URL)
 public class UserController {
-//	public static final String BASE_URL = "/api/user";
+	public static final String BASE_URL = "/api/user";
 	
 	@Autowired
 	private UserService userService;
@@ -66,32 +66,32 @@ public class UserController {
 		return ApiUtils.success(new LoginResponse(token), "Authenticated", HttpStatus.OK);
 	}
 
-	@PostMapping("/register")
+	@PostMapping(BASE_URL + "/register")
 	public ResponseEntity<ApiResponse<CustomUser>> register(@RequestBody RegisterRequest registerRequest)
 			throws Exception {
 		final CustomUser registeredUser = userService.register(registerRequest);
 		return ApiUtils.success(registeredUser, "Created", HttpStatus.CREATED);
 	}
 
-	@GetMapping("/get")
+	@GetMapping(BASE_URL + "/get")
 	public ResponseEntity<ApiResponse<List<CustomUser>>> findAll() {
 		final List<CustomUser> result = userService.findAll();
 		return ApiUtils.success(result, "Success", HttpStatus.OK);
 	}
 
-	@GetMapping("/get/{userId}")
+	@GetMapping(BASE_URL + "/get/{userId}")
 	public ResponseEntity<ApiResponse<CustomUser>> findById(@PathVariable Long userId) {
 		final CustomUser result = userService.findById(userId);
 		return ApiUtils.success(result, "Success", HttpStatus.OK);
 	}
 
-	@PutMapping("/update")
+	@PutMapping(BASE_URL + "/update")
 	public ResponseEntity<ApiResponse<CustomUser>> update(@RequestBody RegisterRequest registerRequest) {
 		CustomUser result = userService.update(registerRequest);
 		return ApiUtils.success(result, "Success", HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping(BASE_URL + "/delete/{id}")
 	public ResponseEntity<ApiResponse<Long>> delete(@PathVariable Long id) {
 		userService.delete(id);
 		return ApiUtils.success(id, "Success", HttpStatus.OK);

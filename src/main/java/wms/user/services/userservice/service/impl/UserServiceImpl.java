@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
 	private PasswordEncoder passwordEncoder;
 
 	public CustomUser register(final RegisterRequest request) {
+		request.getRoles();
 		// validation
 		if (userRepository.findByEmail(request.getEmail()) != null)
 			throw new EmailAlreadyExistsException("User has already registed: " + request.getEmail());
@@ -83,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
 	public void delete(final Long userId) {
 		log.info("Attempt to delete user ID: " + userId);
-		CustomUser user = userRepository.findById(userId)
+		userRepository.findById(userId)
 				.orElseThrow(() -> new UserNotFoundException("User ID " + userId + " not found in database."));
 
 		userRepository.deleteById(userId);
